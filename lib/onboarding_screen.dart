@@ -40,75 +40,70 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
-            return SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: PageView.builder(
-                        controller: pageController,
-                        onPageChanged: (index) {
-                          setState(() {
-                            currentIndex = index;
-                          });
-                        },
-                        itemCount: 4,
-                        itemBuilder: (BuildContext context, int index) =>
-                            OnBoardingBody(
-                                title: onboardingList[index].title,
-                                image: onboardingList[index].image,
-                                description: onboardingList[index].description),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Column(
+            return Column(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: PageView.builder(
+                    controller: pageController,
+                    onPageChanged: (index) {
+                      setState(() {
+                        currentIndex = index;
+                      });
+                    },
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) =>
+                        OnBoardingBody(
+                            title: onboardingList[index].title,
+                            image: onboardingList[index].image,
+                            description: onboardingList[index].description),
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ...List.generate(
-                                  4, (index) => dotIndicator(index, currentIndex)),
-                            ],
-                          ),
-                          const Spacer(),
-                          // Button
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: MaterialButton(
-                                  onPressed: () async {
-                                    pageController.nextPage(
-                                        duration: const Duration(milliseconds: 300),
-                                        curve: Curves.ease);
-                                    if (currentIndex == 3){
-                                      await Navigator.pushReplacement((context), MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                                      // Navigator.of(context).pop();
-                                    }
-
-                                  },
-                                  child: Text(
-                                    currentIndex == 3 ? "Continue" : "Next",
-                                    style: const TextStyle(
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                )),
-                          )
+                          ...List.generate(
+                              4, (index) => dotIndicator(index, currentIndex)),
                         ],
                       ),
-                    )
-                  ],
-                ),
-              ),
+                      const Spacer(),
+                      // Button
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: MaterialButton(
+                              onPressed: () async {
+                                pageController.nextPage(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.ease);
+                                if (currentIndex == 3){
+                                  await Navigator.pushReplacement((context), MaterialPageRoute(builder: (context) => const RegisterScreen()));
+                                  // Navigator.of(context).pop();
+                                }
+
+                              },
+                              child: Text(
+                                currentIndex == 3 ? "Continue" : "Next",
+                                style: const TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      )
+                    ],
+                  ),
+                )
+              ],
             );
           },
         ),
