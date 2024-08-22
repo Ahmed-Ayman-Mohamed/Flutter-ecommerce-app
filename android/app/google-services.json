@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "608732280389",
+    "project_id": "iti-g4-e4bfb",
+    "storage_bucket": "iti-g4-e4bfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:608732280389:android:87cbf104cf1d564ee9d52c",
+        "android_client_info": {
+          "package_name": "com.example.first_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq2FfHdm1Oj0uZfZoR4w37wTN9UFiUvto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
